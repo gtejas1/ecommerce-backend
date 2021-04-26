@@ -68,13 +68,14 @@ exports.getProduct = (req, res) => {
     return res.json(req.product);
 };
 
+//middleware
 exports.photo = (req, res, next) => {
-    if (res.product.photo.data) {
-        res.set("Content-Type", req.product.photo.contentType)
-        return res.send(req.product.photo.data)
+    if (req.product.photo.data) {
+      res.set("Content-Type", req.product.photo.contentType);
+      return res.send(req.product.photo.data);
     }
     next();
-};
+  };
 
 exports.deleteProduct = (req, res) => {
     let product = req.product;

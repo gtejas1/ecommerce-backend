@@ -13,8 +13,8 @@ router.param("categoryId", getCategoryById);
 router.post('/category/create/:userId', isSignedIn, isAuthenticated, isAdmin, createCategory);
 
 //read
-router.post('/category/:categoryId', getCategory);
-router.post('/categories', getAllCategories);
+router.get('/category/:categoryId', getCategory);
+router.get('/categories', getAllCategories);
 
 //update
 router.put('/category/:categoryId/:userId', isSignedIn, isAuthenticated, isAdmin, updateCategory);
