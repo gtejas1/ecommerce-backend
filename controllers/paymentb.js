@@ -8,11 +8,11 @@ const gateway = new braintree.BraintreeGateway({
 });
 
 exports.getToken = (req, res) => {
-    gateway.clientToken.generate({}, (err, response) =>{
+  gateway.clientToken.generate({}, (err, response) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        res.send(response.clientToken);
+        res.json(response);
       }
     });
   };

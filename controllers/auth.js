@@ -27,20 +27,22 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+const errors = validationResult(req);
     const { email, password } = req.body;
-    const errors = validationResult(req);
+    
     if (!errors.isEmpty()) {
-        return res.status(422), json({
+        return res.status(422). json({
             error: errors.array()[0].msg
         });
     }
     User.findOne({ email }, (err, user) => {
-        if (err || !user)
+        if (err || !user){
             return res.status(400).json({
                 error: "USER email does not exist"
             });
+}
         if (!user.authenticate(password)) {
-            return res.status(400).json({
+            return res.status(401).json({
                 error: "Email and password do not match"
             });
         }
@@ -57,9 +59,10 @@ exports.signin = (req, res) => {
 };
 
 exports.signout = (req, res) => {
-    res.json({
-        message: "user signout success"
-    });
+  res.clearCookie("token");
+  res.json({
+    message: "User signout successfully"
+  });
 };
 
 
