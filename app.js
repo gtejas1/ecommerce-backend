@@ -1,6 +1,6 @@
-require('dotenv').config();
+require("dotenv").config();
 const mongoose = require("mongoose");
-const express = require('express');
+const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -15,13 +15,18 @@ const stripeRoutes = require("./routes/stripepayment");
 
 const app = express();
 
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-}).then(() => {
-    console.log("DB CONNECTED!")
-})
+mongoose
+  .connect(
+    "mongodb+srv://cdCENTIXO:gw2ksoft@cluster0.6vkmg.mongodb.net/tshirts?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    }
+  )
+  .then(() => {
+    console.log("DB CONNECTED!");
+  });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -39,5 +44,5 @@ app.use("/api", stripeRoutes);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
-    console.log(`app is running at ${port}`);
+  console.log(`app is running at ${port}`);
 });
