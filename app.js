@@ -15,6 +15,7 @@ const stripeRoutes = require("./routes/stripepayment");
 
 const app = express();
 
+//updated connection string
 mongoose
   .connect(
     "mongodb+srv://cdCENTIXO:gw2ksoft@cluster0.6vkmg.mongodb.net/tshirts?retryWrites=true&w=majority",
